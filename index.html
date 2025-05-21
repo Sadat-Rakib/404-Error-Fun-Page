@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            font-family: "Space Grotesk", sans-serif;
+            overflow: hidden;
+            perspective: 1000px;
+            color: #e2e8f0;
+        }
+
+        .scene {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: sceneRotate 100s infinite linear;
+        }
+
+        @keyframes sceneRotate {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .planet {
+            transform-style: preserve-3d;
+            position: relative;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(180, 108, 66, 0.3));
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .planet:after,
+        .planet:before {
+            content: "";
+            position: absolute;
+            background: radial-gradient(circle at center, transparent 50%, rgba(255, 255, 255, 0.1));
+            border-radius: 50%;
+            transform: translateZ(-40em);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        }
+
+        .planet:after {
+            top: calc(50% - 18em);
+            left: calc(50% - 18em);
+            width: 36em;
+            height: 36em;
+            animation: pulse 4s infinite alternate;
+        }
+
+        .planet:before {
+            top: calc(50% - 25em);
+            left: calc(50% - 25em);
+            width: 50em;
+            height: 50em;
+            animation: pulse 6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        .planet .inner {
+            transform: rotate3d(0, 0, 1, -30deg) translateZ(1em);
+            position: absolute;
+            top: calc(50% - 13em);
+            left: calc(50% - 13em);
+            width: 26em;
+            height: 26em;
+            background: linear-gradient(90deg, #9a5528 50%, #d88556 50%);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: planetRotate 30s linear infinite;
+        }
+
+        @keyframes planetRotate {
+            0% {
+                transform: rotate3d(0, 0, 1, -30deg) translateZ(1em);
+            }
+
+            100% {
+                transform: rotate3d(0, 0, 1, 330deg) translateZ(1em);
+            }
+        }
+
+        .planet .inner:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(transparent 66%, rgba(0, 0, 0, 0.2) 66.1%);
+        }
+
+        @media (max-width: 1200px) {
+            .planet {
+                font-size: 0.75em;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .planet {
+                font-size: 0.5em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .planet {
+                font-size: 0.4em;
+            }
+        }
+
+        .ring {
+            position: absolute;
+            top: calc(50% - 19em);
+            left: calc(50% - 20em);
+            width: 42em;
+            height: 42em;
+            border-radius: 50%;
+            background: radial-gradient(transparent 50%, #d4df65 50.1%, #d4df65 58%, #e2ed77 58.1%, transparent 70%);
+            transform: rotateX(78deg) rotateY(-30deg) translateY(-3.125px);
+            box-shadow: 0 0 20px rgba(212, 223, 101, 0.3);
+            animation: ringRotate 40s linear infinite;
+        }
+
+        @keyframes ringRotate {
+            0% {
+                transform: rotateX(78deg) rotateY(-30deg) translateY(-3.125px);
+            }
+
+            100% {
+                transform: rotateX(78deg) rotateY(330deg) translateY(-3.125px);
+            }
+        }
+
+
+        .surface {
+            margin: -1.4em auto 0;
+            border-radius: 1.5em;
+            width: 14em;
+            height: 1.5em;
+            background-color: #9a5c38;
+            box-shadow: 9.2em 1.5em #b46c42, -11em 1.5em #804d2f, 0em 1.5em #9a5c38, 2em 3em #9a5c38, -2em 3em #9a5c38, 12.5em 4.5em #b46c42, -8em 4.5em #804d2f, 0 4.5em #9a5c38, 1em 6em #9a5c38, 10.5em 7.5em #b46c42, -10em 7.5em #804d2f, 0 7.5em #9a5c38, 3em 9em #9a5c38, -3em 9em #9a5c38, 14em 10.5em #b46c42, -6.8em 10.5em #804d2f, 2em 10.5em #9a5c38, 2em 12em #9a5c38, -0.5em 12em #9a5c38, 10em 13.5em #b46c42, -8.4em 13.5em #804d2f, -2em 13.5em #9a5c38, -2em 15em #9a5c38, 6.3em 16.5em #b46c42, -11.6em 16.5em #804d2f, -6em 16.5em #9a5c38, 0em 18em #9a5c38, 5em 16.5em #b46c42, -12em 16.5em #804d2f, -6em 16.5em #9a5c38, 0em 18em #9a5c38, 10.5em 19.5em #b46c42, -9.6em 19.5em #804d2f, 0em 19.5em #9a5c38, -1.3em 21em #9a5c38, 3em 21em #9a5c38, 8em 22.5em #b46c42, -11.4em 22.5em #804d2f, 0em 22.5em #9a5c38, 0em 24em #9a5c38, 12em 25.5em #b46c42, -8em 25.5em #804d2f, 0em 25.5em #9a5c38, 2.2em 27em #9a5c38, 12em 28.5em #b46c42, -10em 28.5em #804d2f, 0em 28.5em #9a5c38, 0em 30em #9a5c38;
+            animation: surfaceGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes surfaceGlow {
+            0% {
+                filter: brightness(1);
+            }
+
+            100% {
+                filter: brightness(1.15);
+            }
+        }
+
+        .moon {
+            position: absolute;
+            top: -16em;
+            left: 6em;
+            width: 8em;
+            height: 8em;
+            background: radial-gradient(at bottom left, #6d412a 50%, #9a5c38 50.1%, #9a5c38 70%, #c47b4f 70.1%);
+            border-radius: 50%;
+            overflow: hidden;
+            transform: translateZ(22em);
+            animation: moon 12s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+            box-shadow: 0 0 15px rgba(156, 92, 56, 0.6);
+        }
+
+        .moon:after,
+        .moon:before {
+            content: "";
+            position: absolute;
+        }
+
+        .moon:after {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(transparent 64%, rgba(0, 0, 0, 0.15) 64.1%);
+        }
+
+        .moon:before {
+            top: 2.5em;
+            left: 2.2em;
+            width: 1em;
+            height: 1em;
+            background-color: #6d412a;
+            border-radius: 50%;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes moon {
+            0% {
+                top: 13em;
+                left: -13em;
+                transform: translateZ(-30em) scale(0.7);
+            }
+
+            1% {
+                transform: translateZ(30em) scale(0.7);
+            }
+
+            25% {
+                transform: translateZ(30em) scale(1);
+            }
+
+            50% {
+                top: -19em;
+                left: 7em;
+                transform: translateZ(30em) scale(1);
+            }
+
+            51% {
+                transform: translateZ(-30em) scale(1);
+            }
+
+            75% {
+                transform: translateZ(-30em) scale(0.7);
+            }
+
+            100% {
+                top: 13em;
+                left: -13em;
+                transform: translateZ(-30em) scale(0.7);
+            }
+        }
+
+        .error-text {
+            position: relative;
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .error-text span {
+            font-size: 12rem;
+            font-weight: bold;
+            position: relative;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .error-text span:nth-of-type(1) {
+            color: #d88556;
+            animation: textPulse 4s infinite alternate;
+            margin-right: 1rem;
+        }
+
+        .error-text span:nth-of-type(2) {
+            color: #9a5528;
+            animation: textPulse 4s infinite alternate-reverse;
+            margin-left: 1rem;
+        }
+
+        @keyframes textPulse {
+            0% {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            }
+
+            100% {
+                text-shadow: 0 0 30px rgba(216, 133, 86, 0.8);
+            }
+        }
+
+        @media (max-width: 460px) {
+            .error-text span {
+                font-size: 6rem;
+            }
+        }
+
+        .alt {
+            position: fixed;
+            bottom: 4rem;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+            color: #e2e8f0;
+            letter-spacing: 0.2em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @media (min-width: 461px) {
+            .alt {
+                display: none;
+            }
+        }
+
+        .info {
+            position: fixed;
+            bottom: 2rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0;
+            color: #94a3b8;
+            letter-spacing: 0.1em;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: color 0.3s;
+        }
+
+        .info:hover {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 460px) {
+            .info {
+                bottom: 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-button {
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #d88556 0%, #9a5528 100%);
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(156, 92, 56, 0.4);
+            animation: fadeInUp 1s ease-out 1s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            letter-spacing: 0.05em;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(156, 92, 56, 0.6);
+        }
+
+        .back-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(156, 92, 56, 0.4);
+        }
+
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .stars,
+        .stars:after,
+        .stars:before {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .stars {
+            animation: shootingStar 6s infinite ease-out;
+            opacity: 0;
+        }
+
+        .stars:after,
+        .stars:before {
+            content: "";
+            display: block;
+            position: absolute;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+
+        @keyframes shootingStar {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0);
+                width: 2px;
+            }
+
+            1% {
+                opacity: 1;
+            }
+
+            5% {
+                transform: translate(-200px, 200px);
+                opacity: 0;
+                width: 15px;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-200px, 200px);
+                width: 2px;
+            }
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.9;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        .s1 {
+            top: 10%;
+            left: 90%;
+            animation-delay: 0s;
+        }
+
+        .s1:after {
+            top: 20vh;
+            left: -30vw;
+            animation-delay: 1.5s;
+        }
+
+        .s1:before {
+            top: 40vh;
+            left: -50vw;
+            animation-delay: 3s;
+        }
+
+        .s2 {
+            top: 30%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .s2:after {
+            top: -20vh;
+            left: -15vw;
+            animation-delay: 2.2s;
+        }
+
+        .s2:before {
+            top: 50vh;
+            left: -40vw;
+            animation-delay: 1.2s;
+        }
+
+        .s3 {
+            top: 50%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        .s3:after {
+            top: -30vh;
+            left: -20vw;
+            animation-delay: 0.5s;
+        }
+
+        .s3:before {
+            top: 10vh;
+            left: -45vw;
+            animation-delay: 3.5s;
+        }
+
+        .s4 {
+            top: 70%;
+            left: 85%;
+            animation-delay: 5s;
+        }
+
+        .s4:after {
+            top: -40vh;
+            left: -25vw;
+            animation-delay: 2.8s;
+        }
+
+        .s4:before {
+            top: 30vh;
+            left: -30vw;
+            animation-delay: 1.8s;
+        }
+
+        .dust-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .dust {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            animation: float-dust 15s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes float-dust {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(var(--translate-x), var(--translate-y)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars-container">
+        <div class="stars s1"></div>
+        <div class="stars s2"></div>
+        <div class="stars s3"></div>
+        <div class="stars s4"></div>
+    </div>
+
+    <div class="dust-particles" id="dust-container"></div>
+
+    <div class="scene">
+        <div class="planet">
+            <div class="ring"></div>
+            <div class="inner"></div>
+            <div class="surface"></div>
+            <div class="moon"></div>
+        </div>
+    </div>
+
+    <div class="error-text">
+        <span>4</span>
+        <span>4</span>
+    </div>
+
+    <h1 class="alt">404</h1>
+    <p class="info">PLANET NOT FOUND</p>
+
+    <button class="back-button" onclick="window.history.back()">RETURN TO ORBIT</button>
+
+    <script>
+
+        const dustContainer = document.getElementById('dust-container');
+        for (let i = 0; i < 100; i++) {
+            const dust = document.createElement('div');
+            dust.className = 'dust';
+
+
+            dust.style.top = `${Math.random() * 100}%`;
+            dust.style.left = `${Math.random() * 100}%`;
+
+
+            const size = Math.random() * 2 + 0.5;
+            dust.style.width = `${size}px`;
+            dust.style.height = `${size}px`;
+
+
+            dust.style.setProperty('--translate-x', `${(Math.random() - 0.5) * 200}px`);
+            dust.style.setProperty('--translate-y', `${(Math.random() - 0.5) * 200}px`);
+
+
+            dust.style.animationDelay = `${Math.random() * 15}s`;
+
+            dustContainer.appendChild(dust);
+        }
+
+        // Add parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+
+            document.querySelector('.planet').style.transform =
+                `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.2}deg)`;
+
+            document.querySelector('.error-text').style.transform =
+                `translate(${moveX * -0.5}px, ${moveY * -0.5}px)`;
+        });
+    </script>
+</body>
+
+</html>
